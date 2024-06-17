@@ -42,6 +42,15 @@ const projects = [
     image: "/assets/cultlink.webm",
     href: "https://cultlink.vercel.app/",
   },
+  
+  {
+    title: "GitHub Dorks",
+    description: "A collection of GitHub dorks and helper scripts to search for sensitive information on GitHub.",
+    image: "/assets/github-dorks.webm",
+    href: "https://github-dorks.vercel.app/",
+
+  },
+  
   {
     title: "Narrative",
     description: "A design concept for a News app.",
@@ -66,25 +75,25 @@ const services = [
   {
     service: "UI/UX Design",
     description:
-      "I can design your Apps and webites so you focus on things that matter.",
+      "I can design your Apps and Websites so you focus on things that matter.",
     icon: Frame,
   },
   {
-    service: "Full-stack Development",
+    service: "Researcher",
     description:
-      "I can build landing pages for you and your businesses or help you redesign it.",
+      "Active Security/Vulnerability researcher on HackerOne.",
     icon: SearchCheck,
   },
   {
-    service: "Responsive Design",
+    service: "TechStack",
     description:
-      "Designing websites that look and perform equally well on all devices and screen sizes.",
+      "Python, Bash, Javascript and some web frameworks.",
     icon: MonitorSmartphone,
   },
   {
     service: "Open to Work",
     description:
-      "I am  looking for Internship roles in Security Analyst, Pentester, IB, Quantive Finance, PE.",
+      "I am open to roles in Security Analyst, Pentester, SOC Analyst, Red-Teamer, Network Analyst.",
     icon: Eye,
   },
 ];
