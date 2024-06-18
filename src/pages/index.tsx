@@ -75,13 +75,13 @@ const services = [
   {
     service: "UI/UX Design",
     description:
-      "I can design your Apps and Websites so you focus on things that matter.",
+      "Well versed with designing and documenting visually stunning UI with focus on improving user experience.",
     icon: Frame,
   },
   {
     service: "Researcher",
     description:
-      "Active Security/Vulnerability researcher on HackerOne.",
+      "Active Security/Vulnerability researcher on HackerOne, Intigriti.",
     icon: SearchCheck,
   },
   {
@@ -93,7 +93,7 @@ const services = [
   {
     service: "Open to Work",
     description:
-      "I am open to roles in Security Analyst, Pentester, SOC Analyst, Red-Teamer, Network Analyst.",
+      "I am open to roles in Security Analyst, Pen-Tester, SOC Analyst, Red-Teamer, Network Analyst.",
     icon: Eye,
   },
 ];
