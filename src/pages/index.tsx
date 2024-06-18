@@ -227,7 +227,7 @@ export default function Home() {
               data-scroll-speed=".06"
               className="flex flex-row items-center space-x-1.5 pt-6"
             >
-              <Link href="mailto:j@proton.me" passHref>
+              <Link href="mailto:dev.manas@protonmail.com" passHref>
                 <Button>
                   Get in touch <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -272,9 +272,9 @@ export default function Home() {
           >
             <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
 
-             I am a Security researcher and a bounty hunter I am also the head of
-             Outreach at GDSC TCET where we host, collobrate and manage events and workshops for the community.
-             Mostly I hack, ocassionally I design and build products. I also run a blog where I write about hacking related stuff.
+            I am a Security researcher and a bounty hunter I am also the head of
+            Outreach at GDSC TCET where we host, collaborate and manage events and workshops for the community.
+             Mostly I hack, occasionally I design and build products. I also run a blog where I write about hacking related stuff.
 
             </h2>
             <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
@@ -317,7 +317,7 @@ export default function Home() {
               ✨ Projects
             </span>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-             Things I&apos;ve built ocassionally
+             Things I&apos;ve built occasionally
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
               Personal and Academic projects I&apos;ve worked on.
@@ -401,7 +401,7 @@ export default function Home() {
                   </span>
                 </h2>
                 <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the Technologies that I am familar with.
+                  Here are some of the Technologies that I am familiar with.
 
                 </p>
               </div>
@@ -436,7 +436,7 @@ export default function Home() {
               <span className="text-gradient clash-grotesk">together.</span>
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to Internships/Full-Time roles.
+              I&apos;m currently available for freelance work and open to Internships/Full-Time roles in Security.
             </p>
             <Link href="mailto:dev.manas@protonmail.com" passHref>
               <Button className="mt-6">Get in touch</Button>
