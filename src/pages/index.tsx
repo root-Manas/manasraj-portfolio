@@ -211,7 +211,7 @@ export default function Home() {
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
               Hi, I am Manas an Electronics & Telecommunications Engineer
-              based in Mumbai, India. Want to know more about me? You are at the right place.
+              based in Mumbai, India. Want to know more about me? You are in the right place.
               </p>
             </div>
             <span

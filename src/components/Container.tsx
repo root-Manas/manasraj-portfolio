@@ -41,7 +41,7 @@ const navLinks = [
   { href: "#about", text: "About" },
   { href: "#projects", text: "Projects" },
   { href: "https://encryptica-blog.vercel.app/", text: "blog" },
-  { href: "https://drive.google.com/file/d/1lNxdhRsLfmgekjNYnvcKssc25FGAZLN8/view?usp=sharing", text: "Resume" },
+  { href: "https://drive.google.com/file/d/1zLlOrTuxpTGc0mwDn8eL8PJZVf2mLFYw/view?usp=sharing", text: "Resume" },
 ];
 
 function handleClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
