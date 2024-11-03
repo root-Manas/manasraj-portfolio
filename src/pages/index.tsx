@@ -69,14 +69,8 @@ const services = [
   {
     service: "Penetration Testing & Network Security",
     description:
-      "Burp Suite, Caido, Nmap, Wireshark, Nikto, Metasploit, Sql Map, Splunk",
+      "Well versed with Web Application Security, Network Security, and Penetration Testing.",
     icon: Code2,
-  },
-  {
-    service: "UI/UX Design",
-    description:
-      "Well versed with designing and documenting visually stunning UI with focus on improving user experience.",
-    icon: Frame,
   },
   {
     service: "Researcher",
@@ -87,7 +81,7 @@ const services = [
   {
     service: "TechStack",
     description:
-      "Python, Bash, Javascript and some web frameworks.",
+      "Python, Bash, JS, TS and web frameworks like React and NextJS.",
     icon: MonitorSmartphone,
   },
   {
@@ -207,7 +201,7 @@ export default function Home() {
                   <br />
                 </span>
                  <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                 Designer
+                Researcher
                 </span>
               </h1>
               <p
@@ -216,9 +210,8 @@ export default function Home() {
                 data-scroll-speed=".06"
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
-              Hi, I am Manas a third-year engineering
-              undergrad majoring in Electronics & Telecommunication engineering
-              based in Mumbai, India.
+              Hi, I am Manas an Electronics & Telecommunications Engineer
+              based in Mumbai, India. Want to know more about me? You are at the right place.
               </p>
             </div>
             <span
@@ -272,8 +265,8 @@ export default function Home() {
           >
             <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
 
-            I am a Security researcher and a bounty hunter I am also the head of
-            Outreach at GDSC TCET where we host, collaborate and manage events and workshops for the community.
+            I am a Security researcher and a bounty hunter I was also the head of
+            Outreach at GDSC-TCET where we host, collaborate and manage events and workshops for the community.
              Mostly I hack, occasionally I design and build products. I also run a blog where I write about hacking related stuff.
 
             </h2>
