@@ -29,8 +29,6 @@ const words = [
   "Ciao",
   "Olà",
   "やあ",
-  "Hallå",
-  "Guten tag",
   "Hallo",
 ];
 

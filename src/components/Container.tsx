@@ -137,7 +137,7 @@ export default function Container(props: ContainerProps) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" sizes="192x192" />
       </Head>
       <nav
         className={cn(
@@ -206,7 +206,11 @@ export default function Container(props: ContainerProps) {
                 {/* Links */}
                 <ul className="flex min-h-fit w-full flex-col items-start space-y-6 px-[22px] py-[58px]">
                   {navLinks.map((link, i) => (
-                    <button key={link.href} onClick={() => setIsOpen(false)}>
+                    <button 
+                      key={link.href} 
+                      onClick={() => setIsOpen(false)}
+                      aria-label={link.text}
+                    >
                       <NavItem
                         href={link.href}
                         text={link.text}

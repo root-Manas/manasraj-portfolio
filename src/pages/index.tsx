@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   ChevronRight,
   Code2,
-  Frame,
   SearchCheck,
   Eye,
   MonitorSmartphone,
@@ -36,19 +35,25 @@ const aboutStats = [
   
 
 const projects = [
-  {
-    title: "CultLink",
-    description: "A social site for cultures across the world to connect.",
-    image: "/assets/cultlink.webm",
-    href: "https://cultlink.vercel.app/",
-  },
-  
-  {
+    {
     title: "GitHub Dorks",
     description: "A collection of GitHub dorks and helper scripts to search for sensitive information on GitHub.",
     image: "/assets/github-dorks.webm",
     href: "https://github-dorks.vercel.app/",
 
+  },
+  {
+    title: "Finsen",
+    description: "Finsen is a financial news sentiment analysis model written in Python. It's a simple model that is trained on headlines of financial news articles from the internet. It works by calculating the polarity of the news headlines and then classifying them into positive, negative or neutral.",
+    image: "/assets/finsen.webm",
+    href: "https://github.com/root-Manas/Finsen",
+  },
+
+  {
+    title: "CultLink",
+    description: "A social site for cultures across the world to connect.",
+    image: "/assets/cultlink.webm",
+    href: "https://cultlink.vercel.app/",
   },
   
   {
@@ -267,7 +272,7 @@ export default function Home() {
 
             I am a Security researcher and a bounty hunter I was also the head of
             Outreach at GDSC-TCET where we host, collaborate and manage events and workshops for the community.
-             Mostly I hack, occasionally I design and build products. I also run a blog where I write about hacking related stuff.
+            Mostly I hack, occasionally I design and build products. I also run a blog where I write about hacking related stuff.
 
             </h2>
             <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
