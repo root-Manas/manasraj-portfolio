@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Final message
         await new Promise(r => setTimeout(r, 800));
         const final = createLine();
-        await typeText(final, ' Access Granted. Welcome, user.');
+        await typeText(final, ' Access Granted. Welcome,reader.');
 
     } catch (e) {
         // Fallback: "Secure Mode" - User feels cool instead of broken
