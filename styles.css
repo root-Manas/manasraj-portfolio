@@ -532,7 +532,9 @@ footer p {
    =================================== */
 @media (max-width: 768px) {
     :root {
-        --space-xl: 3rem;
+        --space-xl: 2rem;
+        --space-lg: 1.5rem;
+        --space-md: 1rem;
     }
 
     h1 {
