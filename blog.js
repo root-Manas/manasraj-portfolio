@@ -1,43 +1,43 @@
 /**
  * Blog System - Loads markdown posts from the /blog folder
- * 
- * To add a new blog post:
- * 1. Create a new .md file in the /blog folder
- * 2. Add to the POSTS array below with: slug, title, date, description
- * 3. The post will automatically appear in the blog section
  */
 
-// Blog posts configuration - Add your posts here
+// Blog posts configuration
 const POSTS = [
     {
-        slug: 'getting-started',
-        title: 'Hello World - Getting Started with Security Research',
-        date: '2025-12-15',
-        description: 'An introduction to my journey in security research and what to expect from this blog.'
+        slug: 'antenna-wave-propagation',
+        title: 'Why learning antennas might save you from getting hacked',
+        date: '2024-08-31',
+        description: 'Antennas are the unsung heroes of our wireless world. From nature\'s bioelectric fields to quantum concepts, understanding them is key to defending against signal interception and spoofing.'
+    },
+    {
+        slug: 'PPF-model',
+        title: 'Silicon vs. Code: The USA\'s Dilemma of Tech Dominance',
+        date: '2024-06-01',
+        description: 'Analyzing the shift from semiconductor manufacturing to software development in the US economy using the Production Possibilities Frontier (PPF) economic model.'
+    },
+    {
+        slug: 'cron_jobs_to_priviliage_esc',
+        title: 'Cron Jobs to Privilege Escalation',
+        date: '2024-05-09',
+        description: 'A walk-through of a CTF challenge where a forgotten cron job led to root access. Learn why cleaning up old automation scripts is critical for system security.'
     }
-    // Add more posts here like:
-    // {
-    //     slug: 'post-filename-without-md',
-    //     title: 'Your Post Title',
-    //     date: 'YYYY-MM-DD',
-    //     description: 'A brief description of the post.'
-    // }
 ];
 
 // Format date for display
 function formatDate(dateStr) {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
     });
 }
 
 // Render blog posts list
 function renderBlogPosts() {
     const container = document.getElementById('blog-posts');
-
+    
     if (POSTS.length === 0) {
         container.innerHTML = `
             <div class="no-posts">
@@ -46,10 +46,10 @@ function renderBlogPosts() {
         `;
         return;
     }
-
+    
     // Sort posts by date (newest first)
     const sortedPosts = [...POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
-
+    
     const postsHTML = sortedPosts.map(post => `
         <article class="blog-post" onclick="openPost('${post.slug}')">
             <div class="blog-date">${formatDate(post.date)}</div>
@@ -59,55 +59,35 @@ function renderBlogPosts() {
             </div>
         </article>
     `).join('');
-
+    
     container.innerHTML = postsHTML;
 }
 
-// Open a blog post (for future implementation)
+// Open a blog post
 function openPost(slug) {
-    // For now, just navigate to the markdown file
-    // In a more advanced setup, this could open a modal or new page
+    // Navigate to the markdown file for now
+    // In a real implementation you'd want a proper reader page
     window.location.href = `blog/${slug}.md`;
 }
 
 // Initialize blog system
 document.addEventListener('DOMContentLoaded', () => {
-    renderBlogPosts();
-
+    // Only render blog posts if the container exists
+    if (document.getElementById('blog-posts')) {
+        renderBlogPosts();
+    }
+    
     // Smooth scroll for navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('nav a, .logo').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // Update active state
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        });
-    });
-
-    // Update active nav link on scroll
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
+            // Only for hash links
+            if (link.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
