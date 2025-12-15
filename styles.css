@@ -264,7 +264,7 @@ section {
 
 /* Terminal */
 .hero-terminal {
-    margin-top: 4rem;
+    margin-top: 5rem;
     max-width: 450px;
     background: var(--bg-terminal);
     border-radius: 8px;
@@ -571,7 +571,7 @@ footer p {
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     nav ul {
