@@ -138,7 +138,7 @@ header {
     left: 0;
     right: 0;
     padding: var(--space-sm) var(--space-lg);
-    background: rgba(240, 235, 227, 0.9);
+    background: rgba(240, 235, 227, 0.96);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     z-index: 100;
@@ -471,6 +471,30 @@ section {
     color: var(--text-muted);
     font-family: var(--font-mono);
     font-size: 0.9rem;
+}
+
+.show-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-sm);
+}
+
+.show-more-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.show-more-btn:hover {
+    border-color: var(--accent-olive);
+    color: var(--text-primary);
+    background: var(--bg-card);
 }
 
 /* ===================================

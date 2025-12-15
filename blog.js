@@ -35,7 +35,7 @@ function formatDate(dateStr) {
 }
 
 // Render blog posts list
-function renderBlogPosts() {
+function renderBlogPosts(limit = null, append = false) {
     const container = document.getElementById('blog-posts');
     if (!container) return;
 
@@ -51,7 +51,16 @@ function renderBlogPosts() {
     // Sort posts by date (newest first)
     const sortedPosts = [...POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    const postsHTML = sortedPosts.map(post => `
+    // Determine how many posts to show
+    let displayPosts = sortedPosts;
+    let showButton = false;
+
+    if (limit && limit < sortedPosts.length) {
+        displayPosts = sortedPosts.slice(0, limit);
+        showButton = true;
+    }
+
+    const postsHTML = displayPosts.map(post => `
         <article class="blog-post" onclick="openPost('${post.slug}')">
             <div class="blog-date">${formatDate(post.date)}</div>
             <div class="blog-content">
@@ -61,7 +70,32 @@ function renderBlogPosts() {
         </article>
     `).join('');
 
-    container.innerHTML = postsHTML;
+    if (append) {
+        // If appending (expanding), remove button and add new posts
+        const btnContainer = document.querySelector('.show-more-container');
+        if (btnContainer) btnContainer.remove();
+        container.insertAdjacentHTML('beforeend', postsHTML);
+    } else {
+        // Initial render
+        container.innerHTML = postsHTML;
+
+        // Add Show More button if needed
+        if (showButton) {
+            const btnHTML = `
+                <div class="show-more-container">
+                    <button class="show-more-btn" onclick="expandBlogPosts()">Show More</button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', btnHTML);
+        }
+    }
+}
+
+// Expand blog posts (show all)
+function expandBlogPosts() {
+    // Re-render without limit, but technically we just want to append the rest?
+    // Actually simplicity: just re-render all.
+    renderBlogPosts();
 }
 
 // Open a blog post
@@ -151,7 +185,16 @@ async function loadPost(slug) {
 document.addEventListener('DOMContentLoaded', () => {
     // Render posts list if container exists
     if (document.getElementById('blog-posts')) {
-        renderBlogPosts();
+        // Check if we are on the home page (index.html or root) to limit posts
+        const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
+        // Also check if we are on archive.html
+        const isArchivePage = window.location.pathname.endsWith('archive.html');
+
+        if (isArchivePage) {
+            renderBlogPosts(); // Show all on archive
+        } else {
+            renderBlogPosts(1); // Show only latest 1 on home
+        }
     }
 
     // Smooth scroll for navigation (only on main page with hash links)
