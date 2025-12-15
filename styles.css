@@ -260,6 +260,7 @@ section {
 
 /* Terminal */
 .hero-terminal {
+    margin-top: var(--space-lg);
     max-width: 450px;
     background: var(--bg-terminal);
     border-radius: 8px;
