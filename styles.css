@@ -595,3 +595,65 @@ footer p {
         padding: 0 var(--space-sm);
     }
 }
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-text);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate3d(-100px, -100px, 0);
+    /* Start off-screen */
+    mix-blend-mode: difference;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(186, 78, 58, 0.1);
+    /* transparent accent */
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate3d(-100px, -100px, 0);
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hide default cursor only on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none;
+    }
+}
+
+/* Hover States */
+.custom-cursor.hover {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.custom-cursor-follower.hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(186, 78, 58, 0.2);
+    border-color: transparent;
+    mix-blend-mode: difference;
+}

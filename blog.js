@@ -121,6 +121,11 @@ async function loadPost(slug) {
 
         container.innerHTML = html;
 
+        // Trigger MathJax to render equations
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+
     } catch (error) {
         console.error('Error loading post:', error);
         container.innerHTML = `
