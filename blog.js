@@ -121,10 +121,19 @@ async function loadPost(slug) {
 
         container.innerHTML = html;
 
-        // Trigger MathJax to render equations
-        if (window.MathJax) {
-            window.MathJax.typesetPromise();
-        }
+        container.innerHTML = html;
+
+        // Robustly trigger MathJax
+        const triggerMathJax = () => {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().catch(err => console.error('MathJax error:', err));
+            } else {
+                // Poll every 100ms until MathJax is ready
+                setTimeout(triggerMathJax, 100);
+            }
+        };
+
+        triggerMathJax();
 
     } catch (error) {
         console.error('Error loading post:', error);
