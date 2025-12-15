@@ -1,6 +1,3 @@
-# Portfolio
-
-Personal portfolio website for Manas, Security Researcher & Engineer.
 
 ## Tech Stack
 
