@@ -6,38 +6,39 @@
 const POSTS = [
     {
         slug: 'antenna-wave-propagation',
-        title: 'Why learning antennas might save you from getting hacked',
-        date: '2024-08-31',
-        description: 'Antennas are the unsung heroes of our wireless world. From nature\'s bioelectric fields to quantum concepts, understanding them is key to defending against signal interception and spoofing.'
+        title: 'Antenna Theory and Wave Propagation: Fundamentals for Security Researchers',
+        date: '2024-06-05',
+        description: 'A dive into the physics of RF communications, antenna design, and the implications for wireless security and signals intelligence.'
     },
     {
         slug: 'PPF-model',
-        title: 'Silicon vs. Code: The USA\'s Dilemma of Tech Dominance',
+        title: 'The Zero-Sum Silicon Game: Analyzing US Tech Dominance via the PPF Model',
         date: '2024-06-01',
-        description: 'Analyzing the shift from semiconductor manufacturing to software development in the US economy using the Production Possibilities Frontier (PPF) economic model.'
+        description: 'An economic analysis of the trade-offs between semiconductor manufacturing and software development using the Production Possibilities Frontier framework.'
     },
     {
         slug: 'cron_jobs_to_priviliage_esc',
-        title: 'Cron Jobs to Privilege Escalation',
+        title: 'Cron Jobs and Privilege Escalation: Mechanics and Mitigation',
         date: '2024-05-09',
-        description: 'A walk-through of a CTF challenge where a forgotten cron job led to root access. Learn why cleaning up old automation scripts is critical for system security.'
+        description: 'An analysis of misconfigured cron jobs as a vector for privilege escalation in Linux environments.'
     }
 ];
 
 // Format date for display
 function formatDate(dateStr) {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
     });
 }
 
 // Render blog posts list
 function renderBlogPosts() {
     const container = document.getElementById('blog-posts');
-    
+    if (!container) return;
+
     if (POSTS.length === 0) {
         container.innerHTML = `
             <div class="no-posts">
@@ -46,10 +47,10 @@ function renderBlogPosts() {
         `;
         return;
     }
-    
+
     // Sort posts by date (newest first)
     const sortedPosts = [...POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
-    
+
     const postsHTML = sortedPosts.map(post => `
         <article class="blog-post" onclick="openPost('${post.slug}')">
             <div class="blog-date">${formatDate(post.date)}</div>
@@ -59,34 +60,105 @@ function renderBlogPosts() {
             </div>
         </article>
     `).join('');
-    
+
     container.innerHTML = postsHTML;
 }
 
 // Open a blog post
 function openPost(slug) {
-    // Navigate to the markdown file for now
-    // In a real implementation you'd want a proper reader page
-    window.location.href = `blog/${slug}.md`;
+    window.location.href = `post.html?slug=${slug}`;
+}
+
+// Load and render a specific post (for post.html)
+async function loadPost(slug) {
+    const container = document.getElementById('article-content');
+    if (!container) return;
+
+    try {
+        const response = await fetch(`blog/${slug}.md`);
+        if (!response.ok) throw new Error('Post not found');
+
+        const markdown = await response.text();
+
+        // Parse Frontmatter
+        const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
+        const match = markdown.match(frontmatterRegex);
+
+        let content = markdown;
+        let metadata = {};
+
+        if (match) {
+            // Remove frontmatter from content
+            content = markdown.replace(frontmatterRegex, '').trim();
+
+            // Parse metadata (simple key-value parser)
+            const fmLines = match[1].split('\n');
+            fmLines.forEach(line => {
+                const parts = line.split(':');
+                if (parts.length >= 2) {
+                    const key = parts[0].trim();
+                    let value = parts.slice(1).join(':').trim();
+                    // Remove quotes if present
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    metadata[key] = value;
+                }
+            });
+        }
+
+        document.title = `${metadata.title || 'Blog Post'} - Manas`;
+
+        const html = `
+            <header class="post-header">
+                <span class="post-date">${formatDate(metadata.pubDate || new Date())}</span>
+                <h1 class="post-title">${metadata.title || 'Untitled'}</h1>
+            </header>
+            <div class="post-content">
+                ${marked.parse(content)}
+            </div>
+        `;
+
+        container.innerHTML = html;
+
+    } catch (error) {
+        console.error('Error loading post:', error);
+        container.innerHTML = `
+            <div class="error">
+                <h2>Post Not Found</h2>
+                <p>The blog post you're looking for doesn't exist or could not be loaded.</p>
+                <a href="archive.html" class="back-link" style="justify-content: center; margin-top: 24px;">Back to Archive</a>
+            </div>
+        `;
+    }
 }
 
 // Initialize blog system
 document.addEventListener('DOMContentLoaded', () => {
-    // Only render blog posts if the container exists
+    // Render posts list if container exists
     if (document.getElementById('blog-posts')) {
         renderBlogPosts();
     }
-    
-    // Smooth scroll for navigation
+
+    // Smooth scroll for navigation (only on main page with hash links)
     document.querySelectorAll('nav a, .logo').forEach(link => {
         link.addEventListener('click', (e) => {
-            // Only for hash links
-            if (link.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+            const href = link.getAttribute('href');
+            if (href.includes('#') && !href.startsWith('http')) {
+                // If we're not on the index page and link is to a section
+                if (!window.location.pathname.endsWith('index.html') && !window.location.pathname.endsWith('/')) {
+                    // Let default behavior happen (navigation to index.html#section from index.html)
+                    return;
+                }
+
+                // If we are on index page
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             }
         });
