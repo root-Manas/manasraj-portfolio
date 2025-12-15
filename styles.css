@@ -601,6 +601,37 @@ footer p {
     .blog-date {
         min-width: auto;
     }
+
+    /* FORCED LAYOUT FIXES (The "Nuclear" Option) */
+    #hero {
+        padding-top: 180px !important;
+    }
+
+    section {
+        padding: 2rem 0 !important;
+    }
+
+    .about-grid {
+        gap: 2rem !important;
+    }
+}
+
+/* Recon Terminal Styles */
+.recon-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.recon-label {
+    color: #8B949E;
+}
+
+.recon-val {
+    color: #e6edf3;
+    font-weight: 500;
 }
 
 @media (max-width: 480px) {
