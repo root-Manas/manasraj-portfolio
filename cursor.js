@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial position to avoid flying in from top-left
     let hasMoved = false;
 
+    // Velocity tracking for distortion
+    let velX = 0;
+    let velY = 0;
+
+    // Smooth factor
+    const ease = 0.15;
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -33,15 +40,53 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
     });
 
-    // Smooth follower movement
+    // Click effects
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('clicking');
+        follower.classList.add('clicking');
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('clicking');
+        follower.classList.remove('clicking');
+    });
+
+    // Smooth follower movement with Jelly Effect
     function render() {
-        // Lerp factor (lower = smoother/slower lag)
-        const dt = 1.0 - Math.pow(1.0 - 0.15, 1);
+        if (!hasMoved) {
+            requestAnimationFrame(render);
+            return;
+        }
 
-        posX += (mouseX - posX) * 0.15;
-        posY += (mouseY - posY) * 0.15;
+        // Calculate smooth movement
+        const targetX = mouseX;
+        const targetY = mouseY;
 
-        follower.style.transform = `translate3d(${posX - 20}px, ${posY - 20}px, 0)`;
+        // Current velocity
+        const dx = targetX - posX;
+        const dy = targetY - posY;
+
+        posX += dx * ease;
+        posY += dy * ease;
+
+        velX = dx * ease;
+        velY = dy * ease;
+
+        // Calculate stretch/squeeze based on velocity
+        const speed = Math.sqrt(velX * velX + velY * velY);
+        const maxSkew = 50; // max velocity clamp
+        const scale = Math.min(speed / 200, 0.4); // max scale distortion
+
+        const angle = Math.atan2(velY, velX) * 180 / Math.PI;
+
+        // default scale is 1, stretch x, squeeze y
+        const scaleX = 1 + scale;
+        const scaleY = 1 - scale;
+
+        // Only apply transform if we are moving significantly
+        const transform = `translate3d(${posX - 20}px, ${posY - 20}px, 0) rotate(${angle}deg) scale(${scaleX}, ${scaleY})`;
+
+        follower.style.transform = transform;
 
         requestAnimationFrame(render);
     }

@@ -657,3 +657,11 @@ footer p {
     border-color: transparent;
     mix-blend-mode: difference;
 }
+
+.custom-cursor-follower.clicking {
+    width: 30px;
+    height: 30px;
+    border-color: var(--color-accent);
+    background-color: rgba(186, 78, 58, 0.4);
+    transition: width 0.1s ease, height 0.1s ease, background-color 0.1s ease;
+}
