@@ -52,6 +52,10 @@
     --shadow-sm: 0 2px 8px rgba(42, 37, 32, 0.06);
     --shadow-md: 0 4px 20px rgba(42, 37, 32, 0.08);
     --shadow-lg: 0 8px 40px rgba(42, 37, 32, 0.1);
+
+    /* Dynamic Layout Defaults */
+    --header-height: 80px;
+    /* Fallback */
 }
 
 /* ===================================
@@ -228,7 +232,7 @@ section {
    =================================== */
 #hero {
     min-height: auto;
-    padding-top: 120px;
+    padding-top: calc(var(--header-height) + var(--space-xl));
     padding-bottom: var(--space-lg);
 }
 
